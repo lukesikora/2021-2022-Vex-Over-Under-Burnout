@@ -10,8 +10,8 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// Drivetrain           drivetrain    4, 5, 6, 7      
 // Controller1          controller                    
+// Drivetrain           drivetrain    4, 7            
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -107,9 +107,7 @@ int main() {
   Competition.drivercontrol(VEXcode_driver_task);
   vexcodeInit();
   
-  Drivetrain.setDriveVelocity(100, percent);
-  Drivetrain.setTurnVelocity(100, percent);
-  porsche(); //console print
+   porsche(); //console print
   
   //setting up speeds
 
