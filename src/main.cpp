@@ -11,7 +11,8 @@
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
-// Drivetrain           drivetrain    4, 7            
+// Drivetrain           drivetrain    4, 5, 7, 6      
+// DigitalOutA          digital_out   A               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -73,6 +74,16 @@ int onauton_autonomous_0() { //right side
 
 //**********************************************************************************************
 
+void onevent_Controller1ButtonA_pressed_0() {
+  DigitalOutA.set(true);
+}
+
+void onevent_Controller1ButtonB_pressed_0() {
+  DigitalOutA.set(false);
+}
+
+//**********************************************************************************************
+
 //AUTONOMOUS SETUP
 void VEXcode_auton_task() {
   // Start the auton control tasks....
@@ -107,10 +118,11 @@ int main() {
   Competition.drivercontrol(VEXcode_driver_task);
   vexcodeInit();
   
-   porsche(); //console print
+  porsche(); //console print
   
   //setting up speeds
 
   //register event handlers
-
+  Controller1.ButtonA.pressed(onevent_Controller1ButtonA_pressed_0);
+  Controller1.ButtonB.pressed(onevent_Controller1ButtonB_pressed_0);
 }
