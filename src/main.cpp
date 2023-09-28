@@ -86,7 +86,18 @@ void onevent_Controller1ButtonB_pressed_0() {
 void onevent_Controller1ButtonX_pressed_0() {
   Motor12.setVelocity(80,percent);
   Motor12.spin(reverse);
+  wait(1.3, seconds);
+  Motor12.stop();
 }
+int ac = 0;
+void onevent_Controller1ButtonY_pressed_0() {
+  Motor12.setVelocity(80,percent);
+  Motor12.spin(reverse);
+}
+void onevent_Controller1ButtonY_released_0() {
+  Motor12.stop();
+}
+
 //**********************************************************************************************
 
 //AUTONOMOUS SETUP
@@ -133,4 +144,6 @@ int main() {
   Controller1.ButtonA.pressed(onevent_Controller1ButtonA_pressed_0);
   Controller1.ButtonB.pressed(onevent_Controller1ButtonB_pressed_0);
   Controller1.ButtonX.pressed(onevent_Controller1ButtonX_pressed_0);
+  Controller1.ButtonY.pressed(onevent_Controller1ButtonY_pressed_0);
+  Controller1.ButtonY.released(onevent_Controller1ButtonY_released_0);
 }
