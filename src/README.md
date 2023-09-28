@@ -32,4 +32,5 @@
 | `    14   `| String extender      |     HOLD Down   |
 
 
-## LAST EDIT: (9/27/2023), 5:07 PM 
+## LAST EDIT: (9/28/2023), 5:18 PM 
+## Update readme functions/port next week
