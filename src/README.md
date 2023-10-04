@@ -22,8 +22,11 @@
 |`   Left stick `| Forward/backwards      |  4,5,6,7 |
 |`   Right stick `| Left/Right      |  4,5,6,7 |
 |_______________| _______________ | _______________|
-|`   18    `| Start shooter      |     R1   |
-| `    18   `| Stop shooter      |     R2   |
+|`   18    `| Start shooter      |     A   |
+| `    18   `| Stop shooter      |     B   |
+|`   18    `| Start shooter      |     X   |
+| `    18   `| Stop shooter      |     Y   |
+
 |_______________| _______________ | _______________|
 |`   17    `| Start intake      |     L1   |
 | `    17   `| Stop intake      |     L2   |
@@ -31,6 +34,5 @@
 | `    C   `| Pneumatics push     |     Up   |
 | `    14   `| String extender      |     HOLD Down   |
 
-
-## LAST EDIT: (9/28/2023), 5:18 PM 
-## Update readme functions/port next week
+## LAST EDIT: 10/4/2023), 5:07 PM 
+## Update readme functions/port tmw
