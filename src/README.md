@@ -22,17 +22,11 @@
 |`   Left stick `| Forward/backwards      |  4,5,6,7 |
 |`   Right stick `| Left/Right      |  4,5,6,7 |
 |_______________| _______________ | _______________|
-|`   18    `| Start shooter      |     A   |
-| `    18   `| Stop shooter      |     B   |
-|`   18    `| Start shooter      |     X   |
-| `    18   `| Stop shooter      |     Y   |
-
+|`   DOut-A    `| Increase Pneumatics      |     A   |
+| `    DOut-A   `| Decrease Pneumatics      |     B   |
+|`   12    `| Single solid shoot      |     X   |
+| `    12   `| Temporary shoot      |     Y    |
 |_______________| _______________ | _______________|
-|`   17    `| Start intake      |     L1   |
-| `    17   `| Stop intake      |     L2   |
-|_______________| _______________ | _______________|
-| `    C   `| Pneumatics push     |     Up   |
-| `    14   `| String extender      |     HOLD Down   |
 
-## LAST EDIT: 10/4/2023), 5:07 PM 
-## Update readme functions/port tmw
+## LAST EDIT: (10/5/2023), 4:11 PM 
+## begin auton plan for tmw
