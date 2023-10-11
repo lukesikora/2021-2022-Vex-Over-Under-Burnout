@@ -12,8 +12,9 @@
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
 // Drivetrain           drivetrain    4, 5, 7, 6      
-// DigitalOutA          digital_out   A               
 // Motor12              motor         12              
+// Motor14              motor         14              
+// Motor15              motor         15              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -76,11 +77,20 @@ int onauton_autonomous_0() { //right side
 //**********************************************************************************************
 
 void onevent_Controller1ButtonA_pressed_0() {
-  DigitalOutA.set(true);
+  Motor12.setVelocity(100, percent);
+  Motor15.setVelocity(100, percent);
+  Motor12.spinFor(forward, 620, degrees);
+  Motor15.spinFor(reverse, 580, degrees);
+  
+  //620
 }
 
 void onevent_Controller1ButtonB_pressed_0() {
-  DigitalOutA.set(false);
+  Motor12.setVelocity(100, percent);
+  Motor15.setVelocity(100, percent);
+  Motor12.spinFor(reverse, 620, degrees);
+  Motor15.spinFor(forward, 580, degrees);
+  
 }
 
 void onevent_Controller1ButtonX_pressed_0() {
