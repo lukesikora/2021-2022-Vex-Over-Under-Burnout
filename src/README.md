@@ -22,11 +22,11 @@
 |`   Left stick `| Forward/backwards      |  4,5,6,7 |
 |`   Right stick `| Left/Right      |  4,5,6,7 |
 |_______________| _______________ | _______________|
-|`   DOut-A    `| Increase Pneumatics      |     A   |
-| `    DOut-A   `| Decrease Pneumatics      |     B   |
 |`   12    `| Single solid shoot      |     X   |
 | `    12   `| Temporary shoot      |     Y    |
+|`   14/15   `| extender     |     A   |
+| `    14/15   `| compresser      |     B     |
 |_______________| _______________ | _______________|
 
-## LAST EDIT: (10/11/2023), 5:16 PM 
+## LAST EDIT: (10/12/2023), 5:19 PM 
 ## begin auton plan for tmw

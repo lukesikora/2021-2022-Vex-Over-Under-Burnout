@@ -12,9 +12,9 @@
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
 // Drivetrain           drivetrain    4, 5, 7, 6      
-// Motor12              motor         12              
 // Motor14              motor         14              
 // Motor15              motor         15              
+// Motor20              motor         20              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -77,35 +77,35 @@ int onauton_autonomous_0() { //right side
 //**********************************************************************************************
 
 void onevent_Controller1ButtonA_pressed_0() {
-  Motor12.setVelocity(100, percent);
+  Motor14.setVelocity(100, percent);
   Motor15.setVelocity(100, percent);
-  Motor12.spinFor(forward, 620, degrees);
+  Motor14.spinFor(forward, 620, degrees);
   Motor15.spinFor(reverse, 580, degrees);
   
   //620
 }
 
 void onevent_Controller1ButtonB_pressed_0() {
-  Motor12.setVelocity(100, percent);
+  Motor14.setVelocity(100, percent);
   Motor15.setVelocity(100, percent);
-  Motor12.spinFor(reverse, 620, degrees);
+  Motor14.spinFor(reverse, 620, degrees);
   Motor15.spinFor(forward, 580, degrees);
   
 }
 
 void onevent_Controller1ButtonX_pressed_0() {
-  Motor12.setVelocity(80,percent);
-  Motor12.spin(reverse);
+  Motor20.setVelocity(80,percent);
+  Motor20.spin(reverse);
   wait(1.3, seconds);
-  Motor12.stop();
+  Motor20.stop();
 }
 int ac = 0;
 void onevent_Controller1ButtonY_pressed_0() {
-  Motor12.setVelocity(80,percent);
-  Motor12.spin(reverse);
+  Motor20.setVelocity(80,percent);
+  Motor20.spin(reverse);
 }
 void onevent_Controller1ButtonY_released_0() {
-  Motor12.stop();
+  Motor20.stop();
 }
 
 //**********************************************************************************************
