@@ -79,18 +79,25 @@ int onauton_autonomous_0() { //right side
 void onevent_Controller1ButtonA_pressed_0() {
   Motor14.setVelocity(100, percent);
   Motor15.setVelocity(100, percent);
-  Motor14.spinFor(forward, 620, degrees);
-  Motor15.spinFor(reverse, 580, degrees);
-  
+  Motor14.spin(forward);
+  Motor15.spin(reverse);
   //620
 }
+void onevent_Controller1ButtonA_released_0() {
+  Motor14.stop();
+  Motor15.stop();
+}
+
 
 void onevent_Controller1ButtonB_pressed_0() {
   Motor14.setVelocity(100, percent);
   Motor15.setVelocity(100, percent);
-  Motor14.spinFor(reverse, 620, degrees);
-  Motor15.spinFor(forward, 580, degrees);
-  
+  Motor14.spin(reverse);
+  Motor15.spin(forward);
+}
+void onevent_Controller1ButtonB_released_0() {
+  Motor14.stop();
+  Motor15.stop();
 }
 
 void onevent_Controller1ButtonX_pressed_0() {
@@ -128,7 +135,7 @@ int ondriver_drivercontrol_0() {
 void VEXcode_driver_task() {
   // Start the driver control tasks....
   vex::task drive0(ondriver_drivercontrol_0);
-  
+
   task rc_auto_loop_task_Controller1();
   while(Competition.isDriverControl() && Competition.isEnabled()) {this_thread::sleep_for(10);}
   drive0.stop();
@@ -143,12 +150,16 @@ int main() {
   Competition.autonomous(VEXcode_auton_task);
   Competition.drivercontrol(VEXcode_driver_task);
   vexcodeInit();
-  
+
   porsche(); //console print
-  
+
   //setting up speeds
   Drivetrain.setDriveVelocity(100, percent);
   Drivetrain.setTurnVelocity(60, percent);
+
+  //config motor position
+  Motor14.spin(forward);
+  Motor15.spin(reverse);
 
   //register event handlers
   Controller1.ButtonA.pressed(onevent_Controller1ButtonA_pressed_0);
