@@ -28,5 +28,6 @@
 | `    14/15   `| compresser      |     B     |
 |_______________| _______________ | _______________|
 
-## LAST EDIT: (10/18/2023), 5:20 PM 
+## LAST EDIT: (10/19/2023), 5:13 PM 
 ## begin auton plan for tmw
+## omfg, figure the drivetrain turn velocity n flap shi
