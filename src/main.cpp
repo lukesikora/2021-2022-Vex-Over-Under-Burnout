@@ -64,7 +64,12 @@ int onauton_autonomous_0() { //opposite side
 
   Drivetrain.driveFor(forward, 1000, mm, true);
   wait(1, seconds);
-   Drivetrain.driveFor(reverse, 300, mm, true);
+  Drivetrain.turnFor(right, 40, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(forward, 150, mm, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(reverse, 300, mm, true);
+  wait(1, seconds);
   return 0; 
 }
 
@@ -126,6 +131,7 @@ void onevent_Controller1ButtonY_pressed_0() {
 void onevent_Controller1ButtonY_released_0() {
   Motor20.stop();
 }
+
 void onevent_Controller1ButtonUp_pressed_0() {
   Motor20.setVelocity(100,percent);
   Motor20.spin(forward);
