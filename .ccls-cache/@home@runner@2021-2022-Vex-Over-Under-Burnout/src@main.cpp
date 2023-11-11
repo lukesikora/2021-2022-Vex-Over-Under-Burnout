@@ -58,52 +58,57 @@ void porsche() {
 int dFor = 400;
 int dSide = 200;
 //AUTON CODE
-int onauton_autonomous_0() { //opposite side
+
+int onauton_autonomous_0() { //left side
   Drivetrain.setDriveVelocity(100, percent);
   Drivetrain.setTurnVelocity(80, percent);
-
-  Drivetrain.driveFor(forward, 1000, mm, true);
-  wait(1, seconds);
-  Drivetrain.turnFor(right, 40, degrees, true);
-  wait(1, seconds);
-  Drivetrain.driveFor(forward, 150, mm, true);
-  wait(1, seconds);
-  Drivetrain.driveFor(reverse, 300, mm, true);
-  wait(1, seconds);
-  return 0; 
-}
-
-/*
-int onauton_autonomous_0() { //same side
-   Drivetrain.setDriveVelocity(5, percent);
-  Drivetrain.setTurnVelocity(80, percent);
-
-  Drivetrain.driveFor(forward, 300, mm, true);
-  Drivetrain.setDriveVelocity(100, percent);
-  Drivetrain.driveFor(reverse, 50, mm, true);
+  Drivetrain.driveFor(reverse, 200, mm, true);
   DigitalOutA.set(true);
-  Drivetrain.driveFor(reverse, 300, mm, true);
-  wait(2, seconds);
-
-  Drivetrain.turnFor(left, 20, degrees, true);
-  wait(1, seconds); 
-  Drivetrain.driveFor(forward, 800, mm, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(reverse, 500, mm, true);
+  wait(1, seconds);
+  DigitalOutA.set(false);
+  Drivetrain.turnFor(right, 30, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(reverse, 200, mm, true);
   wait(1, seconds);
   Drivetrain.driveFor(forward, 200, mm, true);
+  Drivetrain.driveFor(reverse, 300, mm, true);
+  wait(1, seconds);
+  Drivetrain.setDriveVelocity(20, percent);
+  Drivetrain.setTurnVelocity(20, percent);
+  Drivetrain.driveFor(forward, 1200, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(left, 70, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(forward, 1100, mm, true);
+  wait(1, seconds);
+  return 0; 
+} 
 
-  //BANG
+/*
+int onauton_autonomous_0() { //right side
+  Drivetrain.setDriveVelocity(40, percent);
+  Drivetrain.setTurnVelocity(40, percent);
+  Drivetrain.driveFor(forward, 1200, mm, true);
   wait(1, seconds);
-  Drivetrain.setDriveVelocity(70, percent);
-  Drivetrain.driveFor(reverse, 800, mm, true);
-  wait(1,seconds);
-  Drivetrain.turnFor(left, 70, degrees, true); //left
+  Drivetrain.setDriveVelocity(40, percent);
+  Drivetrain.driveFor(reverse, 400, mm, true);
   wait(1, seconds);
-  Drivetrain.driveFor(forward, 10000, mm, true);
-  DigitalOutA.set(false);
+  Drivetrain.turnFor(left, 100, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(forward, 1500, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(right, 80, degrees, true);
+  DigitalOutA.set(true);
+  wait(1, seconds);
+  Drivetrain.setDriveVelocity(20, percent);
+  Drivetrain.setTurnVelocity(20, percent);
+  Drivetrain.driveFor(forward, 400, mm, true);
+  Drivetrain.turnFor(right, 80, degrees, true);
   return 0;
   }
-  */
-
+*/
 
 //**********************************************************************************************
 
