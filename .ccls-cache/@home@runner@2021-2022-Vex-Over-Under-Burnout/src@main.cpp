@@ -58,7 +58,7 @@ void porsche() {
 int dFor = 400;
 int dSide = 200;
 //AUTON CODE
-
+/*
 int onauton_autonomous_0() { //left side
   Drivetrain.setDriveVelocity(100, percent);
   Drivetrain.setTurnVelocity(80, percent);
@@ -85,30 +85,31 @@ int onauton_autonomous_0() { //left side
   wait(1, seconds);
   return 0; 
 } 
+*/
 
-/*
 int onauton_autonomous_0() { //right side
   Drivetrain.setDriveVelocity(40, percent);
   Drivetrain.setTurnVelocity(40, percent);
+  Drivetrain.setStopping(brake);
   Drivetrain.driveFor(forward, 1200, mm, true);
   wait(1, seconds);
-  Drivetrain.setDriveVelocity(40, percent);
   Drivetrain.driveFor(reverse, 400, mm, true);
   wait(1, seconds);
   Drivetrain.turnFor(left, 100, degrees, true);
   wait(1, seconds);
-  Drivetrain.driveFor(forward, 1500, mm, true);
+  Drivetrain.driveFor(forward, 1300, mm, true);
   wait(1, seconds);
   Drivetrain.turnFor(right, 80, degrees, true);
   DigitalOutA.set(true);
   wait(1, seconds);
   Drivetrain.setDriveVelocity(20, percent);
   Drivetrain.setTurnVelocity(20, percent);
-  Drivetrain.driveFor(forward, 400, mm, true);
+  Drivetrain.driveFor(forward, 800, mm, true);
   Drivetrain.turnFor(right, 80, degrees, true);
+  Drivetrain.driveFor(forward, 800, mm, true);
   return 0;
   }
-*/
+
 
 //**********************************************************************************************
 
