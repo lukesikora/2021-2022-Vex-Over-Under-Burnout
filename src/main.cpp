@@ -1,93 +1,233 @@
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*    Module:       main.cpp                                                  */
+/*    Author:       C:\Users\lsikora25                                        */
+/*    Created:      Thu Sep 07 2023                                           */
+/*    Description:  V5 project                                                */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Drivetrain           drivetrain    4, 5, 6, 7      
+// DigitalOutA          digital_out   A               
+// Motor20              motor         20              
+// Controller1          controller                    
+// Motor19              motor         19              
+// ---- END VEXCODE CONFIGURED DEVICES ----
+
 #include "vex.h"
-
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace vex;
-using signature = vision::signature;
-using code = vision::code;
+competition Competition;
+int Brain_precision = 0, Console_precision = 0, Controller1_precision = 0;
+float myVariable;
 
-// A global instance of brain used for printing to the V5 Brain screen
-brain  Brain;
+void porsche() {
+  Brain.Screen.setFont(mono15);
+  Brain.Screen.newLine();
+  Brain.Screen.print("              ____----------- _____");
+  Brain.Screen.newLine();
+  Brain.Screen.print("\\~~~~~~~~~~/~_--~~~------~~~~~     \\");
+  Brain.Screen.newLine();
+  Brain.Screen.print(" `---`\\  _-~      |                   \\");
+  Brain.Screen.newLine();
+  Brain.Screen.print("   _-~  <_         |                     \\[]");
+  Brain.Screen.newLine();
+  Brain.Screen.print(" / ___     ~~--[""] |      ________-------'_");
+  Brain.Screen.newLine();
+  Brain.Screen.print("> /~` \\    |-.   `\\~~.~~~~~                _ ~ - _");
+  Brain.Screen.newLine();
+  Brain.Screen.print(" ~|  ||\\%  |       |    ~  ._                ~ _   ~ ._");
+  Brain.Screen.newLine();
+  Brain.Screen.print("   `_//|_%  \\      |          ~  .              ~-_    /\\");
+  Brain.Screen.newLine();
+  Brain.Screen.print("          `--__     |    _-____  /\\               ~-_ \\/.");
+  Brain.Screen.newLine();
+  Brain.Screen.print("               ~--_ /  ,/ -~-_ \\ \\/          _______---~/ ");
+  Brain.Screen.newLine();
+  Brain.Screen.print("                   ~~-/._<   \\ \\`~~~~~~~~~~~~~     ##--~/");
+  Brain.Screen.newLine();
+  Brain.Screen.print("                         \\    ) |`------##---~~~~-~  ) )");
+  Brain.Screen.newLine();
+  Brain.Screen.print("                          ~-_/_/                  ");
+}
+//**********************************************************************************************
+int dFor = 400;
+int dSide = 200;
+//AUTON CODE
+/*
+int onauton_autonomous_0() { //left side
+  Drivetrain.setDriveVelocity(100, percent);
+  Drivetrain.setTurnVelocity(80, percent);
+  Drivetrain.driveFor(reverse, 200, mm, true);
+  DigitalOutA.set(true);
+  wait(1, seconds);
+  Drivetrain.driveFor(reverse, 500, mm, true);
+  wait(1, seconds);
+  DigitalOutA.set(false);
+  Drivetrain.turnFor(right, 30, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(reverse, 200, mm, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(forward, 200, mm, true);
+  Drivetrain.driveFor(reverse, 300, mm, true);
+  wait(1, seconds);
+  Drivetrain.setDriveVelocity(20, percent);
+  Drivetrain.setTurnVelocity(20, percent);
+  Drivetrain.driveFor(forward, 1200, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(left, 70, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(forward, 1100, mm, true);
+  wait(1, seconds);
+  return 0; 
+} 
+*/
 
-// VEXcode device constructors
-motor leftMotorA = motor(PORT4, ratio6_1, true);
-motor leftMotorB = motor(PORT5, ratio6_1, true);
-motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
-motor rightMotorA = motor(PORT6, ratio6_1, false);
-motor rightMotorB = motor(PORT7, ratio6_1, false);
-motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
-drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
-digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
-motor Motor20 = motor(PORT20, ratio6_1, false);
-controller Controller1 = controller(primary);
-motor Motor19 = motor(PORT19, ratio6_1, false);
-
-// VEXcode generated functions
-// define variable for remote controller enable/disable
-bool RemoteControlCodeEnabled = true;
-// define variables used for controlling motors based on controller inputs
-bool DrivetrainLNeedsToBeStopped_Controller1 = true;
-bool DrivetrainRNeedsToBeStopped_Controller1 = true;
-
-// define a task that will handle monitoring inputs from Controller1
-int rc_auto_loop_function_Controller1() {
-  // process the controller input every 20 milliseconds
-  // update the motors based on the input values
-  while(true) {
-    if(RemoteControlCodeEnabled) {
-      // calculate the drivetrain motor velocities from the controller joystick axies
-      // left = Axis3 + Axis1
-      // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = ((Controller1.Axis3.position()) + (Controller1.Axis1.position()*0.6));
-      int drivetrainRightSideSpeed =((Controller1.Axis3.position()) - (Controller1.Axis1.position())*0.6);
-
-      // check if the value is inside of the deadband range
-      if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
-        // check if the left motor has already been stopped
-        if (DrivetrainLNeedsToBeStopped_Controller1) {
-          // stop the left drive motor
-          LeftDriveSmart.stop();
-          // tell the code that the left motor has been stopped
-          DrivetrainLNeedsToBeStopped_Controller1 = false;
-        }
-      } else {
-        // reset the toggle so that the deadband code knows to stop the left motor nexttime the input is in the deadband range
-        DrivetrainLNeedsToBeStopped_Controller1 = true;
-      }
-      // check if the value is inside of the deadband range
-      if (drivetrainRightSideSpeed < 5 && drivetrainRightSideSpeed > -5) {
-        // check if the right motor has already been stopped
-        if (DrivetrainRNeedsToBeStopped_Controller1) {
-          // stop the right drive motor
-          RightDriveSmart.stop();
-          // tell the code that the right motor has been stopped
-          DrivetrainRNeedsToBeStopped_Controller1 = false;
-        }
-      } else {
-        // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
-        DrivetrainRNeedsToBeStopped_Controller1 = true;
-      }
-
-      // only tell the left drive motor to spin if the values are not in the deadband range
-      if (DrivetrainLNeedsToBeStopped_Controller1) {
-        LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
-        LeftDriveSmart.spin(forward);
-      }
-      // only tell the right drive motor to spin if the values are not in the deadband range
-      if (DrivetrainRNeedsToBeStopped_Controller1) {
-        RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
-        RightDriveSmart.spin(forward);
-      }
-    }
-    // wait before repeating the process
-    wait(10, msec);
+int onauton_autonomous_0() { //right side
+  Drivetrain.setDriveVelocity(40, percent);
+  Drivetrain.setTurnVelocity(40, percent);
+  Drivetrain.setStopping(hold);
+  Drivetrain.setDriveVelocity(20, percent);
+  Drivetrain.setTurnVelocity(20, percent);
+  Drivetrain.driveFor(forward, 1200, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(left, 40, degrees, true);
+  Drivetrain.driveFor(forward, 80, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(right, 10, degrees, true);
+  Drivetrain.driveFor(reverse, 400, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(left, 110, degrees, true);
+  wait(1, seconds);
+  Drivetrain.driveFor(forward, 1300, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(right, 80, degrees, true);
+  DigitalOutA.set(true);
+  wait(1, seconds);
+  Drivetrain.setDriveVelocity(20, percent);
+  Drivetrain.setTurnVelocity(20, percent);
+  Drivetrain.driveFor(forward, 800, mm, true);
+  Drivetrain.turnFor(right, 80, degrees, true);
+  Drivetrain.driveFor(forward, 800, mm, true);
+  return 0;
   }
+
+
+//**********************************************************************************************
+
+void onevent_Controller1ButtonA_pressed_0() {
+  DigitalOutA.set(true);
+}
+
+void onevent_Controller1ButtonB_pressed_0() {
+  DigitalOutA.set(false);
+}
+void onevent_Controller1ButtonDown_pressed_0() {
+  Motor19.setVelocity(100,percent);
+  Motor19.spin(forward);
+}
+void onevent_Controller1ButtonDown_released_0() {
+  Motor19.setVelocity(100, percent);
+  Motor19.spin(reverse);
+}
+
+
+void onevent_Controller1ButtonY_pressed_0() {
+  Motor20.setVelocity(80,percent);
+  Motor20.spin(reverse);
+}
+void onevent_Controller1ButtonY_released_0() {
+  Motor20.stop();
+}
+
+void onevent_Controller1ButtonUp_pressed_0() {
+  Motor20.setVelocity(100,percent);
+  Motor20.spin(forward);
+}
+void onevent_Controller1ButtonUp_released_0() {
+  Motor20.stop();
+}
+
+//**********************************************************************************************
+
+//AUTONOMOUS SETUP
+void VEXcode_auton_task() {
+  // Start the auton control tasks....
+  vex::task auto0(onauton_autonomous_0);
+  while(Competition.isAutonomous() && Competition.isEnabled()) {this_thread::sleep_for(10);}
+  auto0.stop();
+  return;
+}
+
+//DRIVER CONTROLLED
+int ondriver_drivercontrol_0() {
   return 0;
 }
 
-/**
- * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
- * 
- * This should be called at the start of your int main function.
- */
-void vexcodeInit( void ) {
-  task rc_auto_loop_task_Controller1(rc_auto_loop_function_Controller1);
+//DRIVER CONTROL SETUP
+void VEXcode_driver_task() {
+  // Start the driver control tasks....
+  vex::task drive0(ondriver_drivercontrol_0);
+
+  task rc_auto_loop_task_Controller1();
+  while(Competition.isDriverControl() && Competition.isEnabled()) {this_thread::sleep_for(10);}
+  drive0.stop();
+  return;
+}
+//**********************************************************************************************
+void onevent_Controller1ButtonR2_pressed_0() {
+  controller Controller1 = controller(primary);
+  motor leftMotorA = motor(PORT4, ratio6_1, true);
+  motor leftMotorB = motor(PORT5, ratio6_1, true);
+  motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
+  motor rightMotorA = motor(PORT7, ratio6_1, false);
+  motor rightMotorB = motor(PORT6, ratio6_1, false);
+  motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
+  drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 0.5);
+  motor Motor20 = motor(PORT20, ratio6_1, false);
+  digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
+}
+void onevent_Controller1ButtonR1_pressed_0() {
+  controller Controller1 = controller(primary);
+  motor leftMotorA = motor(PORT4, ratio6_1, false);
+  motor leftMotorB = motor(PORT5, ratio6_1, false);
+  motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
+  motor rightMotorA = motor(PORT7, ratio6_1, true);
+  motor rightMotorB = motor(PORT6, ratio6_1, true);
+  motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
+  drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 0.5);
+  motor Motor20 = motor(PORT20, ratio6_1, false);
+  digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
+}
+//MAIN
+int main() {
+  // Initializing Robot Configuration. DO NOT REMOVE!
+  vex::competition::bStopTasksBetweenModes = false;
+  Competition.autonomous(VEXcode_auton_task);
+  Competition.drivercontrol(VEXcode_driver_task);
+  vexcodeInit();
+
+  porsche(); //console print
+
+  //setting up speeds
+  Drivetrain.setDriveVelocity(100, percent);
+  Drivetrain.setTurnVelocity(60, percent);
+
+  //config motor position
+
+  //register event handlers
+  Controller1.ButtonA.pressed(onevent_Controller1ButtonA_pressed_0);
+  Controller1.ButtonB.pressed(onevent_Controller1ButtonB_pressed_0);
+  Controller1.ButtonY.pressed(onevent_Controller1ButtonY_pressed_0);
+  Controller1.ButtonY.released(onevent_Controller1ButtonY_released_0);
+  Controller1.ButtonR1.pressed(onevent_Controller1ButtonR1_pressed_0);
+  Controller1.ButtonR2.pressed(onevent_Controller1ButtonR2_pressed_0);
+  Controller1.ButtonUp.pressed(onevent_Controller1ButtonUp_pressed_0);
+  Controller1.ButtonUp.released(onevent_Controller1ButtonUp_released_0);
+  Controller1.ButtonDown.pressed(onevent_Controller1ButtonDown_pressed_0);
+  Controller1.ButtonDown.released(onevent_Controller1ButtonDown_released_0);
 }

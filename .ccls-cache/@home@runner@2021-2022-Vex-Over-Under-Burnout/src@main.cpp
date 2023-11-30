@@ -90,12 +90,18 @@ int onauton_autonomous_0() { //left side
 int onauton_autonomous_0() { //right side
   Drivetrain.setDriveVelocity(40, percent);
   Drivetrain.setTurnVelocity(40, percent);
-  Drivetrain.setStopping(brake);
+  Drivetrain.setStopping(hold);
+  Drivetrain.setDriveVelocity(20, percent);
+  Drivetrain.setTurnVelocity(20, percent);
   Drivetrain.driveFor(forward, 1200, mm, true);
   wait(1, seconds);
+  Drivetrain.turnFor(left, 40, degrees, true);
+  Drivetrain.driveFor(forward, 80, mm, true);
+  wait(1, seconds);
+  Drivetrain.turnFor(right, 10, degrees, true);
   Drivetrain.driveFor(reverse, 400, mm, true);
   wait(1, seconds);
-  Drivetrain.turnFor(left, 100, degrees, true);
+  Drivetrain.turnFor(left, 110, degrees, true);
   wait(1, seconds);
   Drivetrain.driveFor(forward, 1300, mm, true);
   wait(1, seconds);
