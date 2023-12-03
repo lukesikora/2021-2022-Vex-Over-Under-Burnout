@@ -71,35 +71,44 @@ int onauton_autonomous_0() { //left side
   Drivetrain.turnFor(right, 30, degrees, true);
   wait(1, seconds);
   Drivetrain.driveFor(reverse, 200, mm, true);
-  wait(1, seconds);
+  wait(0.5, seconds);
   Drivetrain.driveFor(forward, 200, mm, true);
-  Drivetrain.driveFor(reverse, 300, mm, true);
+  Drivetrain.driveFor(reverse, 210, mm, true);
+  wait(0.5, seconds);
+  Drivetrain.driveFor(forward, 200, mm, true);
+  Drivetrain.driveFor(reverse, 210, mm, true);
   wait(1, seconds);
-  Drivetrain.setDriveVelocity(20, percent);
-  Drivetrain.setTurnVelocity(20, percent);
-  Drivetrain.driveFor(forward, 1200, mm, true);
-  wait(1, seconds);
-  Drivetrain.turnFor(left, 70, degrees, true);
-  wait(1, seconds);
+  Drivetrain.setDriveVelocity(50, percent);
+  Drivetrain.setTurnVelocity(30, percent);
   Drivetrain.driveFor(forward, 1100, mm, true);
-  wait(1, seconds);
+  wait(0.5, seconds);
+  Drivetrain.turnFor(left, 70, degrees, true);
+  wait(0.5, seconds);
+  Drivetrain.driveFor(forward, 1200, mm, true);
+  wait(0.5, seconds);
+  Drivetrain.driveFor(reverse, 600, mm, true);
   return 0; 
 } 
 */
 
 int onauton_autonomous_0() { //right side
+  /*
   Drivetrain.setDriveVelocity(40, percent);
   Drivetrain.setTurnVelocity(40, percent);
   Drivetrain.setStopping(hold);
-  Drivetrain.setDriveVelocity(20, percent);
-  Drivetrain.setTurnVelocity(20, percent);
-  Drivetrain.driveFor(forward, 1200, mm, true);
+  Drivetrain.setDriveVelocity(40, percent);
+  Drivetrain.setTurnVelocity(40, percent);
+  Drivetrain.drive(reverse);
   wait(1, seconds);
-  Drivetrain.turnFor(left, 40, degrees, true);
-  Drivetrain.driveFor(forward, 80, mm, true);
+  Drivetrain.stop();
   wait(1, seconds);
-  Drivetrain.turnFor(right, 10, degrees, true);
-  Drivetrain.driveFor(reverse, 400, mm, true);
+  Drivetrain.drive(forward);
+  wait(0.5, seconds);
+  Drivetrain.drive(reverse);
+  wait(1, seconds);
+  Drivetrain.stop();
+  Drivetrain.driveFor(forward, 600, mm, true);
+
   wait(1, seconds);
   Drivetrain.turnFor(left, 110, degrees, true);
   wait(1, seconds);
@@ -113,6 +122,7 @@ int onauton_autonomous_0() { //right side
   Drivetrain.driveFor(forward, 800, mm, true);
   Drivetrain.turnFor(right, 80, degrees, true);
   Drivetrain.driveFor(forward, 800, mm, true);
+  */
   return 0;
   }
 
