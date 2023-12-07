@@ -28,6 +28,7 @@
 | `    14/15   `| compresser      |     B     |
 |_______________| _______________ | _______________|
 
-## LAST EDIT: (12/6/2023), 5:13 PM
+## LAST EDIT: (12/7/2023), 5:14 PM
 ## figure out sum drivetrain n auton right side
-## Controller1.Screen.print(Drivetrain.temperature(percent)); 
+## Controller1.Screen.print(Drivetrain.temperature(percent));
+## switch over to pros
