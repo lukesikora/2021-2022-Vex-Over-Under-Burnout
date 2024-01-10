@@ -1,243 +1,93 @@
-/*----------------------------------------------------------------------------*/
-/*                                                                            */
-/*    Module:       main.cpp                                                  */
-/*    Author:       C:\Users\lsikora25                                        */
-/*    Created:      Thu Sep 07 2023                                           */
-/*    Description:  V5 project                                                */
-/*                                                                            */
-/*----------------------------------------------------------------------------*/
+#include "main.h"
 
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Drivetrain           drivetrain    4, 5, 6, 7      
-// DigitalOutA          digital_out   A               
-// Motor20              motor         20              
-// Controller1          controller                    
-// Motor19              motor         19              
-// ---- END VEXCODE CONFIGURED DEVICES ----
-
-#include "vex.h"
-#include <iostream>
-#include <bits/stdc++.h>
-using namespace vex;
-competition Competition;
-int Brain_precision = 0, Console_precision = 0, Controller1_precision = 0;
-float myVariable;
-
-void porsche() {
-  Brain.Screen.setFont(mono15);
-  Brain.Screen.newLine();
-  Brain.Screen.print("              ____----------- _____");
-  Brain.Screen.newLine();
-  Brain.Screen.print("\\~~~~~~~~~~/~_--~~~------~~~~~     \\");
-  Brain.Screen.newLine();
-  Brain.Screen.print(" `---`\\  _-~      |                   \\");
-  Brain.Screen.newLine();
-  Brain.Screen.print("   _-~  <_         |                     \\[]");
-  Brain.Screen.newLine();
-  Brain.Screen.print(" / ___     ~~--[""] |      ________-------'_");
-  Brain.Screen.newLine();
-  Brain.Screen.print("> /~` \\    |-.   `\\~~.~~~~~                _ ~ - _");
-  Brain.Screen.newLine();
-  Brain.Screen.print(" ~|  ||\\%  |       |    ~  ._                ~ _   ~ ._");
-  Brain.Screen.newLine();
-  Brain.Screen.print("   `_//|_%  \\      |          ~  .              ~-_    /\\");
-  Brain.Screen.newLine();
-  Brain.Screen.print("          `--__     |    _-____  /\\               ~-_ \\/.");
-  Brain.Screen.newLine();
-  Brain.Screen.print("               ~--_ /  ,/ -~-_ \\ \\/          _______---~/ ");
-  Brain.Screen.newLine();
-  Brain.Screen.print("                   ~~-/._<   \\ \\`~~~~~~~~~~~~~     ##--~/");
-  Brain.Screen.newLine();
-  Brain.Screen.print("                         \\    ) |`------##---~~~~-~  ) )");
-  Brain.Screen.newLine();
-  Brain.Screen.print("                          ~-_/_/                  ");
-}
-//**********************************************************************************************
-int dFor = 400;
-int dSide = 200;
-//AUTON CODE
-/*
-int onauton_autonomous_0() { //left side
-  Drivetrain.setDriveVelocity(100, percent);
-  Drivetrain.setTurnVelocity(80, percent);
-  Drivetrain.driveFor(reverse, 200, mm, true);
-  DigitalOutA.set(true);
-  wait(1, seconds);
-  Drivetrain.driveFor(reverse, 500, mm, true);
-  wait(1, seconds);
-  DigitalOutA.set(false);
-  Drivetrain.turnFor(right, 30, degrees, true);
-  wait(1, seconds);
-  Drivetrain.driveFor(reverse, 200, mm, true);
-  wait(0.5, seconds);
-  Drivetrain.driveFor(forward, 200, mm, true);
-  Drivetrain.driveFor(reverse, 210, mm, true);
-  wait(0.5, seconds);
-  Drivetrain.driveFor(forward, 200, mm, true);
-  Drivetrain.driveFor(reverse, 210, mm, true);
-  wait(1, seconds);
-  Drivetrain.setDriveVelocity(50, percent);
-  Drivetrain.setTurnVelocity(30, percent);
-  Drivetrain.driveFor(forward, 1100, mm, true);
-  wait(0.5, seconds);
-  Drivetrain.turnFor(left, 70, degrees, true);
-  wait(0.5, seconds);
-  Drivetrain.driveFor(forward, 1200, mm, true);
-  wait(0.5, seconds);
-  Drivetrain.driveFor(reverse, 600, mm, true);
-  return 0; 
-} 
-*/
-
-int onauton_autonomous_0() { //right side
-  /*
-  Drivetrain.setDriveVelocity(40, percent);
-  Drivetrain.setTurnVelocity(40, percent);
-  Drivetrain.setStopping(hold);
-  Drivetrain.setDriveVelocity(40, percent);
-  Drivetrain.setTurnVelocity(40, percent);
-  Drivetrain.drive(reverse);
-  wait(1, seconds);
-  Drivetrain.stop();
-  wait(1, seconds);
-  Drivetrain.drive(forward);
-  wait(0.5, seconds);
-  Drivetrain.drive(reverse);
-  wait(1, seconds);
-  Drivetrain.stop();
-  Drivetrain.driveFor(forward, 600, mm, true);
-
-  wait(1, seconds);
-  Drivetrain.turnFor(left, 110, degrees, true);
-  wait(1, seconds);
-  Drivetrain.driveFor(forward, 1300, mm, true);
-  wait(1, seconds);
-  Drivetrain.turnFor(right, 80, degrees, true);
-  DigitalOutA.set(true);
-  wait(1, seconds);
-  Drivetrain.setDriveVelocity(20, percent);
-  Drivetrain.setTurnVelocity(20, percent);
-  Drivetrain.driveFor(forward, 800, mm, true);
-  Drivetrain.turnFor(right, 80, degrees, true);
-  Drivetrain.driveFor(forward, 800, mm, true);
-  */
-  return 0;
+/**
+ * A callback function for LLEMU's center button.
+ *
+ * When this callback is fired, it will toggle line 2 of the LCD text between
+ * "I was pressed!" and nothing.
+ */
+void on_center_button() {
+  static bool pressed = false;
+  pressed = !pressed;
+  if (pressed) {
+    pros::lcd::set_text(2, "I was pressed!");
+  } else {
+    pros::lcd::clear_line(2);
   }
-
-
-//**********************************************************************************************
-
-void onevent_Controller1ButtonA_pressed_0() {
-  DigitalOutA.set(true);
 }
 
-void onevent_Controller1ButtonB_pressed_0() {
-  DigitalOutA.set(false);
-}
-void onevent_Controller1ButtonDown_pressed_0() {
-  Motor19.setVelocity(100,percent);
-  Motor19.spin(forward);
-}
-void onevent_Controller1ButtonDown_released_0() {
-  Motor19.setVelocity(100, percent);
-  Motor19.spin(reverse);
-}
+/**
+ * Runs initialization code. This occurs as soon as the program is started.
+ *
+ * All other competition modes are blocked by initialize; it is recommended
+ * to keep execution time for this mode under a few seconds.
+ */
+void initialize() {
+  pros::lcd::initialize();
+  pros::lcd::set_text(1, "Hello PROS User!");
 
-
-void onevent_Controller1ButtonY_pressed_0() {
-  Motor20.setVelocity(80,percent);
-  Motor20.spin(reverse);
-}
-void onevent_Controller1ButtonY_released_0() {
-  Motor20.stop();
+  pros::lcd::register_btn1_cb(on_center_button);
 }
 
-void onevent_Controller1ButtonUp_pressed_0() {
-  Motor20.setVelocity(100,percent);
-  Motor20.spin(forward);
-}
-void onevent_Controller1ButtonUp_released_0() {
-  Motor20.stop();
-}
+/**
+ * Runs while the robot is in the disabled state of Field Management System or
+ * the VEX Competition Switch, following either autonomous or opcontrol. When
+ * the robot is enabled, this task will exit.
+ */
+void disabled() {}
 
-//**********************************************************************************************
+/**
+ * Runs after initialize(), and before autonomous when connected to the Field
+ * Management System or the VEX Competition Switch. This is intended for
+ * competition-specific initialization routines, such as an autonomous selector
+ * on the LCD.
+ *
+ * This task will exit when the robot is enabled and autonomous or opcontrol
+ * starts.
+ */
+void competition_initialize() {}
 
-//AUTONOMOUS SETUP
-void VEXcode_auton_task() {
-  // Start the auton control tasks....
-  vex::task auto0(onauton_autonomous_0);
-  while(Competition.isAutonomous() && Competition.isEnabled()) {this_thread::sleep_for(10);}
-  auto0.stop();
-  return;
-}
+/**
+ * Runs the user autonomous code. This function will be started in its own task
+ * with the default priority and stack size whenever the robot is enabled via
+ * the Field Management System or the VEX Competition Switch in the autonomous
+ * mode. Alternatively, this function may be called in initialize or opcontrol
+ * for non-competition testing purposes.
+ *
+ * If the robot is disabled or communications is lost, the autonomous task
+ * will be stopped. Re-enabling the robot will restart the task, not re-start it
+ * from where it left off.
+ */
+void autonomous() {}
 
-//DRIVER CONTROLLED
-int ondriver_drivercontrol_0() {
-  return 0;
-}
+/**
+ * Runs the operator control code. This function will be started in its own task
+ * with the default priority and stack size whenever the robot is enabled via
+ * the Field Management System or the VEX Competition Switch in the operator
+ * control mode.
+ *
+ * If no competition control is connected, this function will run immediately
+ * following initialize().
+ *
+ * If the robot is disabled or communications is lost, the
+ * operator control task will be stopped. Re-enabling the robot will restart the
+ * task, not resume it from where it left off.
+ */
+void opcontrol() {
+  pros::Controller master(pros::E_CONTROLLER_MASTER);
+  pros::Motor left_mtr(1);
+  pros::Motor right_mtr(2);
 
-//DRIVER CONTROL SETUP
-void VEXcode_driver_task() {
-  // Start the driver control tasks....
-  vex::task drive0(ondriver_drivercontrol_0);
+  while (true) {
+    pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
+                     (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
+                     (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
+    int left = master.get_analog(ANALOG_LEFT_Y);
+    int right = master.get_analog(ANALOG_RIGHT_Y);
 
-  task rc_auto_loop_task_Controller1();
-  while(Competition.isDriverControl() && Competition.isEnabled()) {this_thread::sleep_for(10);}
-  drive0.stop();
-  return;
-}
-//**********************************************************************************************
-void onevent_Controller1ButtonR2_pressed_0() {
-  controller Controller1 = controller(primary);
-  motor leftMotorA = motor(PORT4, ratio6_1, true);
-  motor leftMotorB = motor(PORT5, ratio6_1, true);
-  motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
-  motor rightMotorA = motor(PORT7, ratio6_1, false);
-  motor rightMotorB = motor(PORT6, ratio6_1, false);
-  motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
-  drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 0.5);
-  motor Motor20 = motor(PORT20, ratio6_1, false);
-  digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
-}
-void onevent_Controller1ButtonR1_pressed_0() {
-  controller Controller1 = controller(primary);
-  motor leftMotorA = motor(PORT4, ratio6_1, false);
-  motor leftMotorB = motor(PORT5, ratio6_1, false);
-  motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
-  motor rightMotorA = motor(PORT7, ratio6_1, true);
-  motor rightMotorB = motor(PORT6, ratio6_1, true);
-  motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
-  drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 0.5);
-  motor Motor20 = motor(PORT20, ratio6_1, false);
-  digital_out DigitalOutA = digital_out(Brain.ThreeWirePort.A);
-}
-//MAIN
-int main() {
-  // Initializing Robot Configuration. DO NOT REMOVE!
-  vex::competition::bStopTasksBetweenModes = false;
-  Competition.autonomous(VEXcode_auton_task);
-  Competition.drivercontrol(VEXcode_driver_task);
-  vexcodeInit();
+    left_mtr = left;
+    right_mtr = right;
 
-  porsche(); //console print
-
-  //setting up speeds
-  Drivetrain.setDriveVelocity(100, percent);
-  Drivetrain.setTurnVelocity(60, percent);
-
-  //config motor position
-
-  //register event handlers
-  Controller1.ButtonA.pressed(onevent_Controller1ButtonA_pressed_0);
-  Controller1.ButtonB.pressed(onevent_Controller1ButtonB_pressed_0);
-  Controller1.ButtonY.pressed(onevent_Controller1ButtonY_pressed_0);
-  Controller1.ButtonY.released(onevent_Controller1ButtonY_released_0);
-  Controller1.ButtonR1.pressed(onevent_Controller1ButtonR1_pressed_0);
-  Controller1.ButtonR2.pressed(onevent_Controller1ButtonR2_pressed_0);
-  Controller1.ButtonUp.pressed(onevent_Controller1ButtonUp_pressed_0);
-  Controller1.ButtonUp.released(onevent_Controller1ButtonUp_released_0);
-  Controller1.ButtonDown.pressed(onevent_Controller1ButtonDown_pressed_0);
-  Controller1.ButtonDown.released(onevent_Controller1ButtonDown_released_0);
+    pros::delay(20);
+  }
 }
