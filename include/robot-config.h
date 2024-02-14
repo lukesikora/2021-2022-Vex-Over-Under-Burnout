@@ -3,11 +3,11 @@ using namespace vex;
 extern brain Brain;
 
 // VEXcode devices
-extern controller Controller1;
 extern drivetrain Drivetrain;
-extern motor Motor14;
-extern motor Motor15;
+extern digital_out DigitalOutA;
 extern motor Motor20;
+extern controller Controller1;
+extern motor Motor19;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
